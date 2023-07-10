@@ -1,4 +1,4 @@
-import { View, Text, Dimensions,TouchableOpacity, PermissionsAndroid} from 'react-native'
+import { View, Text, Dimensions,TouchableOpacity, PermissionsAndroid, ScrollView, Button, Linking} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ENT from 'react-native-vector-icons/Entypo'
 import { Image } from 'react-native-elements';
@@ -204,6 +204,7 @@ export default function Menu() {
 
 
   return (
+    <ScrollView>
     <><View style={{ alignItems: 'center', backgroundColor: '#D3D3D3', width }}>
           <TouchableOpacity
               style={{
@@ -355,7 +356,7 @@ export default function Menu() {
 {renderLegendComponent()}
     </View>
 </View>
-<View style={{alignSelf:'center'}}>
+<View style={{alignSelf:'center',marginBottom:10}}>
 <Text
           style={{
             justifyContent: 'center',
@@ -376,7 +377,16 @@ export default function Menu() {
           }}>
           Latitude = {currentLatitude}
         </Text>
+        <Button
+              title="Get Location"
+              onPress={()=>Linking.openURL(`https://www.google.com/maps/place/${currentLatitude},${currentLongitude}`)}
+            />
 </View>
           </View></>
+          </ScrollView>
   )
 }
+
+
+
+// onPress={()=>Linking.openURL(`https://www.google.com/maps/place/${items.latitude},${items.longitude}`)}
